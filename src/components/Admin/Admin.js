@@ -1,33 +1,46 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import FeedbackItem from './FeedbackItem/FeedBackItem';
 
 
 
 class Admin extends Component {
-//   constructor(props) {
-//     super(props);
+  constructor(props) {
+    super(props);
 
-//     this.state = {
-//       orders: [],
-//     };
-//   }
+    this.state = {
+      feedback: [],
+    };
+  }
 
-//   componentDidMount() {
-//     this.fetchAllOrderData();
+  componentDidMount() {
+    this.fetchAllFeedbackData();
 
-//   }
+  }
 
-//   fetchAllOrderData() {
-//     axios.get('/api/order').then((response) => {
-//       this.setState({
-//         orders: response.data
-//       });
-//       console.log('GET Admin', this.state.orders);
+  fetchAllFeedbackData() {
+    axios.get('/api/feedback').then((response) => {
+      this.setState({
+        feedback: response.data
+      });
+      console.log('GET Admin', this.state.feedback);
 
-//     }).catch((error) => {
-//       console.log('Get Admin error', error);
-//     });
-//   }
+    }).catch((error) => {
+      console.log('Get Admin error', error);
+    });
+  }
+
+  deleteFeedback = (feedbackID) => {
+    console.log('in delete', feedbackID);
+    axios.delete('/api/feedback/' + feedbackID).then((response) => {
+        console.log(response);
+        this.fetchAllFeedbackData();
+    })
+        .catch((error) => {
+            console.log('error with delete', error);
+        });
+}
+
 
 
   render() {
@@ -35,25 +48,21 @@ class Admin extends Component {
     return (
 
       <div className="App">
-      <p>Admin</p>
-        {/* <table>
+        <h3>Feedback Results</h3>
+        <table>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Time Order Placed</th>
-              <th>Type</th>
-              <th>Cost</th>
+              <th>Feeling</th>
+              <th>Comprehension</th>
+              <th>Support</th>
+              <th>Comments</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.orders.map((order) => <tr key={order._id}>
-              <td>{order.customer.name}</td>
-              <td>{order.time}</td>
-              <td>{order.type}</td>
-              <td>$ {order.order_total}</td>
-            </tr>)}
+            {this.state.feedback.map((feedback) => <FeedbackItem key={feedback.id} feedback={feedback} deleteFeedback={this.deleteFeedback}/>)}
           </tbody>
-        </table> */}
+        </table>
       </div>
 
     );

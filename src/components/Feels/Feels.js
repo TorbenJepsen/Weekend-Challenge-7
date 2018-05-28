@@ -1,15 +1,45 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+
 
 class Feels extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      feeling: '',
+    }
+  }
+
+  handleChange = event => {
+    this.setState({
+      feeling: event.target.value
+    })
+    console.log('feels value', event.target.value)
+  }
+
+  sendFeels = () => {
+    const action = {
+      type: 'ADD_FEELING',
+      payload: this.state,
+    };
+    this.props.dispatch(action);
+  };
+
   render() {
     return (
       <div className="App">
-        <p>Feels</p>
+        <form>
+          <h2>How are you feeling today?</h2>
+          <input onChange={this.handleChange} value={this.state.feeling} />
+          <Link to="/2" onClick={this.sendFeels}><button>Next</button></Link>
+        </form>
+        
       </div>
     );
   }
 }
 
-export default Feels;
+export default connect()(Feels);

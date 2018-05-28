@@ -1,15 +1,43 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Supported extends Component {
-  render() {
-    return (
-      <div className="App">
-        <p>Supported</p>
-      </div>
-    );
-  }
-}
+    constructor(props) {
+        super(props)
 
-export default Supported;
+        this.state = {
+            supported: '',
+        }
+    }
+
+    handleChange = event => {
+        this.setState({
+            supported: event.target.value
+        })
+        console.log('supported value', event.target.value)
+    }
+
+    sendSupported = () => {
+        const action = {
+            type: 'ADD_SUPPORT',
+            payload: this.state,
+        };
+        this.props.dispatch(action);
+    };
+
+    render() {
+        return (
+                <div className="App">
+                    <form>
+                        <h2>How well are you being supported?</h2>
+                        <input onChange={this.handleChange} value={this.state.supported} />
+                        <Link to="/4" onClick={this.sendSupported}><button>Next</button></Link>
+                    </form>
+                    
+                </div>
+                );
+            }
+        }
+        
+export default connect()(Supported);

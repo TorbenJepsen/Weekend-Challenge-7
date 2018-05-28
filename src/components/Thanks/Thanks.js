@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Thanks extends Component {
+
+  
   render() {
     return (
       <div className="App">
-        <p>Thanks</p>
+        <h3>Thanks for your feedback!</h3>
+        <Link to="/"><button>Leave New Feedback</button></Link>
       </div>
     );
   }
