@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Feels from '../Feels/Feels';
 import Understanding from '../Understanding/Understanding';
 import Supported from '../Supported/Supported';

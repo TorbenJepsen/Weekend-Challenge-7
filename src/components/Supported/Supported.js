@@ -31,7 +31,7 @@ class Supported extends Component {
                 <div className="App">
                     <form>
                         <h2>How well are you being supported?</h2>
-                        <input onChange={this.handleChange} value={this.state.supported} />
+                        <input type="number" onChange={this.handleChange} value={this.state.supported} />
                         <Link to="/4" onClick={this.sendSupported}><button>Next</button></Link>
                     </form>
                     

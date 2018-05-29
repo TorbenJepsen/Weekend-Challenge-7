@@ -33,7 +33,7 @@ class Feels extends Component {
       <div className="App">
         <form>
           <h2>How are you feeling today?</h2>
-          <input onChange={this.handleChange} value={this.state.feeling} />
+          <input type="number" onChange={this.handleChange} value={this.state.feeling} />
           <Link to="/2" onClick={this.sendFeels}><button>Next</button></Link>
         </form>
         

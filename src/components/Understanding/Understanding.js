@@ -31,7 +31,7 @@ class Understanding extends Component {
                 <div className="App">
                     <form>
                         <h2>How well are you understanding the content?</h2>
-                        <input onChange={this.handleChange} value={this.state.understanding} />
+                        <input type="number" onChange={this.handleChange} value={this.state.understanding} />
                         <Link to="/3" onClick={this.sendUnderstanding}><button>Next</button></Link>
                     </form>
                     
